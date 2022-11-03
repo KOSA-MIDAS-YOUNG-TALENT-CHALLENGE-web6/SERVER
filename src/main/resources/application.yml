@@ -15,11 +15,6 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
 
-  redis:
-    port: ${REDIS_PORT}
-    host: ${REDIS_HOST}
-    password: ${REDIS_PASS}
-
   jackson:
     property-naming-strategy: SNAKE_CASE
 
