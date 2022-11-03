@@ -1,6 +1,7 @@
 package com.example.server.domain.user.service
 
 import com.example.server.domain.user.domain.repository.UserRepository
+import com.example.server.domain.user.domain.type.Role
 import com.example.server.domain.user.presentation.dto.response.AdminUserElement
 import com.example.server.domain.user.presentation.dto.response.UserListResponse
 import org.springframework.stereotype.Service
@@ -16,6 +17,7 @@ class QueryUserQuittingService(
         val list = userRepository.findAll()
             .filter {
                 it.isQuitting
+                it.userRole != Role.ADMIN
             }.map {
                 AdminUserElement(
                     id = it.id,
