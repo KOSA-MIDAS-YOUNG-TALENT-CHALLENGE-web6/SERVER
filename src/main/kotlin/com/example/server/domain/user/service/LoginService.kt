@@ -26,6 +26,6 @@ class LoginService(
 
         val token = jwtTokenProvider.getToken(request.email, user.userRole)
 
-        return TokenResponse(token.accessToken)
+        return TokenResponse(token.accessToken, token.admin)
     }
 }

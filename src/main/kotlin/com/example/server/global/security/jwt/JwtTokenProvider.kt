@@ -18,8 +18,13 @@ class JwtTokenProvider(
 
     fun getToken(email: String, role: Role): TokenResponse {
         val accessToken: String = generateToken(email, role, jwtProperties.accessExp, ACCESS_KEY)
+        var admin = false
 
-        return TokenResponse(accessToken = accessToken)
+        if (role == Role.ADMIN) {
+            admin = true
+        }
+
+        return TokenResponse(accessToken = accessToken, admin = admin)
     }
 
     private fun generateToken(email: String, role: Role, expiration: Long, type: String): String {
