@@ -5,6 +5,7 @@ import com.example.server.domain.user.presentation.dto.request.ModifyApplication
 import com.example.server.domain.user.presentation.dto.request.ModifyPositionRequest
 import com.example.server.domain.user.presentation.dto.request.SignupRequest
 import com.example.server.domain.user.presentation.dto.response.TodayWorkingTimeResponse
+import com.example.server.domain.user.presentation.dto.response.UserElement
 import com.example.server.domain.user.presentation.dto.response.UserListResponse
 import com.example.server.domain.user.presentation.dto.response.WeekWorkingTimeListResponse
 import com.example.server.domain.user.service.LoginService
@@ -13,6 +14,7 @@ import com.example.server.domain.user.service.ModifyPositionService
 import com.example.server.domain.user.service.QueryTodayWorkingTimeService
 import com.example.server.domain.user.service.QueryUserOfficeGoingService
 import com.example.server.domain.user.service.QueryUserQuittingService
+import com.example.server.domain.user.service.QueryUserService
 import com.example.server.domain.user.service.QueryWeekWorkingTimeService
 import com.example.server.domain.user.service.SignupService
 import com.example.server.global.security.jwt.dto.TokenResponse
@@ -42,7 +44,8 @@ class UserController(
     private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService,
     private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService,
     private val queryUserOfficeGoingService: QueryUserOfficeGoingService,
-    private val queryUserQuittingService: QueryUserQuittingService
+    private val queryUserQuittingService: QueryUserQuittingService,
+    private val queryUserService: QueryUserService
 ) {
 
     @Operation(summary = "회원가입")
@@ -94,5 +97,11 @@ class UserController(
     @GetMapping("/quitting")
     fun getQuitting(): UserListResponse {
         return queryUserQuittingService.execute();
+    }
+
+    @Operation(summary = "유저 조회")
+    @GetMapping
+    fun getUser(): UserElement {
+        return queryUserService.execute();
     }
 }
