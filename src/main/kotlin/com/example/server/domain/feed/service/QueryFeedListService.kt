@@ -14,9 +14,7 @@ class QueryFeedListService(
     @Transactional(readOnly = true)
     fun execute(): FeedListResponse {
         val list = feedRepository.findAll()
-            .filter {
-                !it.getIsAdmin()
-            }.map {
+            .map {
                 FeedElement(
                     id = it.id,
                     content = it.content,
