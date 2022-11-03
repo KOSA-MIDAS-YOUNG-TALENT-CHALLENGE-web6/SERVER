@@ -17,7 +17,7 @@ class QuittingTimeController(
     private val registerQuittingService: RegisterQuittingService
 ) {
 
-    @Operation(summary = "출근 등록")
+    @Operation(summary = "퇴근 등록")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     fun registerOfficeGoingTime() {

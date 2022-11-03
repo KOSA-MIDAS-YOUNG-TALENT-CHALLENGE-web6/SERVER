@@ -9,19 +9,23 @@ import com.example.server.domain.user.service.LoginService
 import com.example.server.domain.user.service.ModifyApplicationService
 import com.example.server.domain.user.service.ModifyPositionService
 import com.example.server.domain.user.service.QueryTodayWorkingTimeService
+import com.example.server.domain.user.service.QueryWeekWorkingTimeService
 import com.example.server.domain.user.service.SignupService
 import com.example.server.domain.user.service.VerifyUserService
 import com.example.server.global.security.jwt.dto.TokenResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import java.time.LocalDateTime
 import javax.validation.Valid
 
 @Tag(name = "유저", description = "유저 관련 API입니다.")
@@ -33,7 +37,8 @@ class UserController(
     private val modifyApplicationService: ModifyApplicationService,
     private val modifyPositionService: ModifyPositionService,
     private val verifyUserService: VerifyUserService,
-    private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService
+    private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService,
+    private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService
 ) {
 
     @Operation(summary = "회원가입")
@@ -74,5 +79,11 @@ class UserController(
     @GetMapping("/today")
     fun getTodayWorkingTime() {
         queryTodayWorkingTimeService.execute();
+    }
+
+    @Operation(summary = "한 주 총 근로 시간 조회")
+    @GetMapping("/week")
+    fun getWeekWorkingTime(@RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) date: LocalDateTime) {
+        queryWeekWorkingTimeService.execute(date);
     }
 }
