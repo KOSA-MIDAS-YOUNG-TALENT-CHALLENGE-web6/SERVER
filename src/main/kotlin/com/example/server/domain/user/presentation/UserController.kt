@@ -7,11 +7,13 @@ import com.example.server.domain.user.presentation.dto.request.SignupRequest
 import com.example.server.domain.user.presentation.dto.response.TodayWorkingTimeResponse
 import com.example.server.domain.user.presentation.dto.response.UserElement
 import com.example.server.domain.user.presentation.dto.response.UserListResponse
+import com.example.server.domain.user.presentation.dto.response.UserResponse
 import com.example.server.domain.user.presentation.dto.response.WeekWorkingTimeListResponse
 import com.example.server.domain.user.service.LoginService
 import com.example.server.domain.user.service.ModifyApplicationService
 import com.example.server.domain.user.service.ModifyPositionService
 import com.example.server.domain.user.service.QueryTodayWorkingTimeService
+import com.example.server.domain.user.service.QueryUserListService
 import com.example.server.domain.user.service.QueryUserOfficeGoingService
 import com.example.server.domain.user.service.QueryUserQuittingService
 import com.example.server.domain.user.service.QueryUserService
@@ -45,7 +47,8 @@ class UserController(
     private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService,
     private val queryUserOfficeGoingService: QueryUserOfficeGoingService,
     private val queryUserQuittingService: QueryUserQuittingService,
-    private val queryUserService: QueryUserService
+    private val queryUserService: QueryUserService,
+    private val queryUserListResponse: QueryUserListService
 ) {
 
     @Operation(summary = "회원가입")
@@ -103,5 +106,11 @@ class UserController(
     @GetMapping
     fun getUser(): UserElement {
         return queryUserService.execute();
+    }
+
+    @Operation(summary = "유저 전체 조회")
+    @GetMapping("/every")
+    fun getEveryUser(): UserResponse {
+        return queryUserListResponse.execute();
     }
 }
