@@ -35,11 +35,11 @@ class User(
 
     position: String = "",
 
-    val todayOfficeGoingTime: LocalDateTime = LocalDateTime.now(),
+    todayOfficeGoingTime: LocalDateTime = LocalDateTime.now(),
 
-    val todayQuittingTime: LocalDateTime = LocalDateTime.now(),
+    todayQuittingTime: LocalDateTime = LocalDateTime.now(),
 
-    val todayTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
+    todayTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
 
     weekTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
 
@@ -62,6 +62,17 @@ class User(
         protected set
 
     @field:NotNull
+    var todayTotalWorkingTime = todayTotalWorkingTime
+        protected set
+
+    @field:NotNull
+    var todayOfficeGoingTime = todayOfficeGoingTime
+        protected set
+    @field:NotNull
+    var todayQuittingTime = todayQuittingTime
+        protected set
+
+    @field:NotNull
     @ColumnDefault(DefaultImage.EMPLOYEE_ID_IMAGE)
     var employeeId = employeeId
         protected set
@@ -80,7 +91,7 @@ class User(
     }
 
     fun modifyTodayTotalWorkingTime(todayTotalWorkingTime: LocalDateTime) {
-        this.weekTotalWorkingTime = weekTotalWorkingTime
+        this.todayOfficeGoingTime = todayOfficeGoingTime
     }
 
     fun modifyWeekTotalWorkingTime(weekTotalWorkingTime: LocalDateTime) {
@@ -90,5 +101,13 @@ class User(
     fun verifyUser(isVerify: Boolean, employeeId: String) {
         this.isVerify = isVerify
         this.employeeId = employeeId
+    }
+
+    fun modifyTodayOfficeGoingTime(todayOfficeGoingTime: LocalDateTime) {
+        this.todayOfficeGoingTime = todayOfficeGoingTime
+    }
+
+    fun modifyTodayQuittingTime(todayQuittingTime: LocalDateTime) {
+        this.todayQuittingTime = todayQuittingTime
     }
 }
