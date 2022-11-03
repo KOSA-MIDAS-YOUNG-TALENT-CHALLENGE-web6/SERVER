@@ -8,4 +8,6 @@ interface UserRepository : CrudRepository<User, Int> {
     fun existsByEmail(email: String): Boolean
 
     fun findUserByEmail(email:String): User?
+
+    fun findUserById(id: Int): User?
 }

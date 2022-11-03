@@ -22,7 +22,6 @@ class User(
     @field:NotNull
     val name: String,
 
-    //주일 총 근로시간, 하루 총 근로시간,
     @field:NotNull
     @Length(min = 8, max = 16)
     val password: String,
@@ -35,11 +34,9 @@ class User(
 
     position: String = "",
 
-    todayOfficeGoingTime: LocalDateTime = LocalDateTime.now(),
+    isOfficeGoing: Boolean = false,
 
-    todayQuittingTime: LocalDateTime = LocalDateTime.now(),
-
-    todayTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
+    isQuitting: Boolean = false,
 
     weekTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
 
@@ -58,18 +55,17 @@ class User(
         protected set
 
     @field:NotNull
+    @ColumnDefault("'0'")
+    var isOfficeGoing = isOfficeGoing
+        protected set
+
+    @field:NotNull
+    @ColumnDefault("'0'")
+    var isQuitting = isQuitting
+        protected set
+
+    @field:NotNull
     var weekTotalWorkingTime = weekTotalWorkingTime
-        protected set
-
-    @field:NotNull
-    var todayTotalWorkingTime = todayTotalWorkingTime
-        protected set
-
-    @field:NotNull
-    var todayOfficeGoingTime = todayOfficeGoingTime
-        protected set
-    @field:NotNull
-    var todayQuittingTime = todayQuittingTime
         protected set
 
     @field:NotNull
@@ -90,24 +86,24 @@ class User(
         this.position = position
     }
 
-    fun modifyTodayTotalWorkingTime(todayTotalWorkingTime: LocalDateTime) {
-        this.todayOfficeGoingTime = todayOfficeGoingTime
-    }
-
-    fun modifyWeekTotalWorkingTime(weekTotalWorkingTime: LocalDateTime) {
-        this.weekTotalWorkingTime = weekTotalWorkingTime
-    }
-
     fun verifyUser(isVerify: Boolean, employeeId: String) {
         this.isVerify = isVerify
         this.employeeId = employeeId
     }
 
-    fun modifyTodayOfficeGoingTime(todayOfficeGoingTime: LocalDateTime) {
-        this.todayOfficeGoingTime = todayOfficeGoingTime
+    fun setOfficeGoingTrue() {
+        this.isOfficeGoing = true
     }
 
-    fun modifyTodayQuittingTime(todayQuittingTime: LocalDateTime) {
-        this.todayQuittingTime = todayQuittingTime
+    fun setOfficeGoingFalse() {
+        this.isOfficeGoing = false
+    }
+
+    fun setQuittingTrue() {
+        this.isQuitting = true
+    }
+
+    fun setQuittingFalse() {
+        this.isQuitting = false
     }
 }
