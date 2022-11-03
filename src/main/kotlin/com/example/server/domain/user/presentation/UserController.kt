@@ -105,5 +105,4 @@ class UserController(
     fun getQuitting(): UserListResponse {
         return queryUserQuittingService.execute();
     }
-
 }
