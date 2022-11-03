@@ -18,21 +18,28 @@ class QueryTodayWorkingTimeService(
     @Transactional(readOnly = true)
     fun execute(): TodayWorkingTimeResponse {
         val user = userFacade.getCurrentUser()
+        var officeTime = ""
+        var qTime = ""
 
         val officeGoingTime = officeGoingTimeRepository.findAllByUser(user)
-            ?.filter {
-                isToday(it.time)
-            }.toString()
+        val quittingTime = quittingRepository.findAllByUser(user)
 
-        val quittingTIme = quittingRepository.findAllByUser(user)
-            ?.filter {
-                isToday(it.time)
-            }.toString()
+        for (time in officeGoingTime!!) {
+            if (isToday(time.time)) {
+                officeTime = time.time.toString()
+            }
+        }
+
+        for (time in quittingTime!!) {
+            if (isToday(time.time)) {
+                qTime = time.time.toString()
+            }
+        }
 
         return TodayWorkingTimeResponse(
             userId = user.id,
-            todayOfficeGoingTime = officeGoingTime,
-            todayQuittingTime = quittingTIme
+            todayOfficeGoingTime = officeTime,
+            todayQuittingTime = qTime
         )
     }
 
