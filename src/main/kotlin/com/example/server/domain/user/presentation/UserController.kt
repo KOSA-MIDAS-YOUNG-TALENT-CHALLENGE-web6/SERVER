@@ -4,7 +4,6 @@ import com.example.server.domain.user.presentation.dto.request.LoginRequest
 import com.example.server.domain.user.presentation.dto.request.ModifyApplicationRequest
 import com.example.server.domain.user.presentation.dto.request.ModifyPositionRequest
 import com.example.server.domain.user.presentation.dto.request.SignupRequest
-import com.example.server.domain.user.presentation.dto.request.VerifyUserRequest
 import com.example.server.domain.user.presentation.dto.response.TodayWorkingTimeResponse
 import com.example.server.domain.user.presentation.dto.response.UserListResponse
 import com.example.server.domain.user.presentation.dto.response.WeekWorkingTimeListResponse
@@ -73,13 +72,6 @@ class UserController(
     @PatchMapping("/position")
     fun modifyPosition(@Valid @RequestBody request: ModifyPositionRequest) {
         modifyPositionService.execute(request);
-    }
-
-    @Operation(summary = "사원증 등록하기")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/verify")
-    fun verifyUser(@Valid @RequestBody request: VerifyUserRequest) {
-        verifyUserService.execute(request);
     }
 
     @Operation(summary = "오늘 총 근로 시간 조회")
