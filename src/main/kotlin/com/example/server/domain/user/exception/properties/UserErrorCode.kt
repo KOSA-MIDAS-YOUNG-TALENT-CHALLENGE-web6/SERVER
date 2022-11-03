@@ -11,5 +11,8 @@ enum class UserErrorCode(
     USER_NOT_FOUND(404, "User Not Found"),
     USER_ALREADY_EXISTS(409, "User Already Exists"),
 
-    PASSWORD_MISS_MATCHED(409, "Password Miss Matched")
+    PASSWORD_MISS_MATCHED(409, "Password Miss Matched"),
+
+    OFFICE_GOING_TIME_NOT_FOUND(404, "Office Going Time Not Found"),
+    QUITTING_TIME_NOT_FOUND(404, "Quitting Time Not Found")
 }
