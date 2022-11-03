@@ -8,6 +8,7 @@ import com.example.server.domain.user.service.LoginService
 import com.example.server.domain.user.service.ModifyApplicationService
 import com.example.server.domain.user.service.ModifyPositionService
 import com.example.server.domain.user.service.SignupService
+import com.example.server.domain.user.service.VerifyUserService
 import com.example.server.global.security.jwt.dto.TokenResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -27,7 +28,8 @@ class UserController(
     private val signupService: SignupService,
     private val loginService: LoginService,
     private val modifyApplicationService: ModifyApplicationService,
-    private val modifyPositionService: ModifyPositionService
+    private val modifyPositionService: ModifyPositionService,
+    private val verifyUserService: VerifyUserService
 ) {
 
     @Operation(summary = "회원가입")
@@ -52,8 +54,15 @@ class UserController(
 
     @Operation(summary = "직급 수정하기")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/birthday")
+    @PatchMapping("/position")
     fun modifyPosition(@Valid @RequestBody request: ModifyPositionRequest) {
         modifyPositionService.execute(request);
+    }
+
+    @Operation(summary = "사원증 등록하기")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/position")
+    fun verifyUser(@Valid @RequestBody request: String) {
+        verifyUserService.execute(request);
     }
 }

@@ -2,6 +2,8 @@ package com.example.server.domain.user.domain
 
 import com.example.server.domain.user.domain.type.Role
 import com.example.server.global.entity.BaseEntity
+import com.example.server.infrastructure.aws.image.defaultImage.DefaultImage
+import org.hibernate.annotations.ColumnDefault
 import org.hibernate.validator.constraints.Length
 import java.time.LocalDateTime
 import javax.persistence.Entity
@@ -39,7 +41,11 @@ class User(
 
     val todayTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
 
-    weekTotalWorkingTime: LocalDateTime = LocalDateTime.now()
+    weekTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
+
+    employeeId: String = DefaultImage.EMPLOYEE_ID_IMAGE,
+
+    isVerify: Boolean = false
 
 ) : BaseEntity() {
 
@@ -55,6 +61,16 @@ class User(
     var weekTotalWorkingTime = weekTotalWorkingTime
         protected set
 
+    @field:NotNull
+    @ColumnDefault(DefaultImage.EMPLOYEE_ID_IMAGE)
+    var employeeId = employeeId
+        protected set
+
+    @field:NotNull
+    @ColumnDefault("'0'")
+    var isVerify = isVerify
+        protected set
+
     fun modifyApplication(application: String) {
         this.application = application
     }
@@ -63,7 +79,16 @@ class User(
         this.position = position
     }
 
+    fun modifyTodayTotalWorkingTime(todayTotalWorkingTime: LocalDateTime) {
+        this.weekTotalWorkingTime = weekTotalWorkingTime
+    }
+
     fun modifyWeekTotalWorkingTime(weekTotalWorkingTime: LocalDateTime) {
         this.weekTotalWorkingTime = weekTotalWorkingTime
+    }
+
+    fun verifyUser(isVerify: Boolean, employeeId: String) {
+        this.isVerify = isVerify
+        this.employeeId = employeeId
     }
 }
