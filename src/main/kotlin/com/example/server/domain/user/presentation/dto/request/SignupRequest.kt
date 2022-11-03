@@ -16,7 +16,5 @@ data class SignupRequest(
         regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}$",
         message = "password는 영문자와 숫자, 특수문자를 모두 포함해서 8~16자리 이내로 입력해주세요."
     )
-    val password: String,
-
-    val rePassword: String
+    val password: String
 )
