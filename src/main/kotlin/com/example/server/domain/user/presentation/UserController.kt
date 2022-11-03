@@ -12,6 +12,8 @@ import com.example.server.domain.user.presentation.dto.response.WeekWorkingTimeL
 import com.example.server.domain.user.service.LoginService
 import com.example.server.domain.user.service.ModifyApplicationService
 import com.example.server.domain.user.service.ModifyPositionService
+import com.example.server.domain.user.service.QueryExpectationOfficeGoingTimeService
+import com.example.server.domain.user.service.QueryExpectationQuittingTimeService
 import com.example.server.domain.user.service.QueryTodayWorkingTimeService
 import com.example.server.domain.user.service.QueryUserListService
 import com.example.server.domain.user.service.QueryUserOfficeGoingService
@@ -48,7 +50,9 @@ class UserController(
     private val queryUserOfficeGoingService: QueryUserOfficeGoingService,
     private val queryUserQuittingService: QueryUserQuittingService,
     private val queryUserService: QueryUserService,
-    private val queryUserListResponse: QueryUserListService
+    private val queryUserListResponse: QueryUserListService,
+    private val queryExpectationQuittingTimeService: QueryExpectationQuittingTimeService,
+    private val queryExpectationOfficeGoingTimeService: QueryExpectationOfficeGoingTimeService
 ) {
 
     @Operation(summary = "회원가입")
@@ -112,5 +116,17 @@ class UserController(
     @GetMapping("/every")
     fun getEveryUser(): UserResponse {
         return queryUserListResponse.execute();
+    }
+
+    @Operation(summary = "유저 예상 출근 시간 조회")
+    @GetMapping("/expectationoffice")
+    fun getExpectationOffice(): Int {
+        return queryExpectationOfficeGoingTimeService.execute();
+    }
+
+    @Operation(summary = "유저 예상 퇴근 시간 조회")
+    @GetMapping("/expectationquitting")
+    fun getExpectationQuitting(): Int {
+        return queryExpectationQuittingTimeService.execute();
     }
 }
