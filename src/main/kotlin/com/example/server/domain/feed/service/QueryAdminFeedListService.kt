@@ -17,7 +17,7 @@ class QueryAdminFeedListService(
     fun execute(): FeedListResponse {
         val user = userFacade.getCurrentUser()
         val list = feedRepository.findAllByUser(user)
-            ?.filter { it.isAdminUser }
+            ?.filter { it.getIsAdmin() }
             ?.map {
                 FeedElement(
                     id = it.id,
