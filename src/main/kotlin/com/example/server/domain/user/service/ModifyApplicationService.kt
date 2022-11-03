@@ -20,6 +20,6 @@ class ModifyApplicationService(
             throw UserNotAdminException.EXCEPTION
         }
 
-        user.modifyPosition(request.application)
+        user.modifyApplication(request.application)
     }
 }
