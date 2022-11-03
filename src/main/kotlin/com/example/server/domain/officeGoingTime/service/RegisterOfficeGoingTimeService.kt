@@ -14,8 +14,8 @@ class RegisterOfficeGoingTimeService(
 ) {
 
     @Transactional
-    fun execute(userId: Int) {
-        val user = userFacade.getUserById(userId)
+    fun execute() {
+        val user = userFacade.getCurrentUser()
 
         val officeGoingTime = OfficeGoingTime(
             time = LocalDateTime.now(),

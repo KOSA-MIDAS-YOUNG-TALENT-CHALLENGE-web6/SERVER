@@ -28,44 +28,36 @@ class User(
 
     @field:NotNull
     @field:Enumerated(EnumType.STRING)
-    val role: Role,
+    val userRole: Role,
 
-    application: String = "",
+    userApplication: String = "",
 
-    position: String = "",
+    userPosition: String = "",
 
-    isOfficeGoing: Boolean = false,
+    isOfficeGoing: Boolean,
 
-    isQuitting: Boolean = false,
-
-    weekTotalWorkingTime: LocalDateTime = LocalDateTime.now(),
+    isQuitting: Boolean,
 
     employeeId: String = DefaultImage.EMPLOYEE_ID_IMAGE,
 
-    isVerify: Boolean = false
+    isVerify: Boolean
 
 ) : BaseEntity() {
 
     @field:NotNull
-    var application = application
+    var userApplication = userApplication
         protected set
 
     @field:NotNull
-    var position = position
+    var userPosition = userPosition
         protected set
 
     @field:NotNull
-    @ColumnDefault("'0'")
     var isOfficeGoing = isOfficeGoing
         protected set
 
     @field:NotNull
-    @ColumnDefault("'0'")
     var isQuitting = isQuitting
-        protected set
-
-    @field:NotNull
-    var weekTotalWorkingTime = weekTotalWorkingTime
         protected set
 
     @field:NotNull
@@ -79,11 +71,11 @@ class User(
         protected set
 
     fun modifyApplication(application: String) {
-        this.application = application
+        this.userApplication = application
     }
 
     fun modifyPosition(position: String) {
-        this.position = position
+        this.userApplication = position
     }
 
     fun verifyUser(isVerify: Boolean, employeeId: String) {

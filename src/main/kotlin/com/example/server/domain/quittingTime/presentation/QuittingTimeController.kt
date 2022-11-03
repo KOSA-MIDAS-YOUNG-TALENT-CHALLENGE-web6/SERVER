@@ -19,8 +19,8 @@ class QuittingTimeController(
 
     @Operation(summary = "출근 등록")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/{user-id}")
-    fun registerOfficeGoingTime(@PathVariable("user-id") userId: Int) {
-        registerQuittingService.execute(userId)
+    @PostMapping
+    fun registerOfficeGoingTime() {
+        registerQuittingService.execute()
     }
 }

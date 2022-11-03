@@ -14,8 +14,8 @@ class RegisterQuittingService(
 ) {
 
     @Transactional
-    fun execute(userId: Int) {
-        val user = userFacade.getUserById(userId)
+    fun execute() {
+        val user = userFacade.getCurrentUser()
 
         val quittingTime = QuittingTime(
             time = LocalDateTime.now(),
