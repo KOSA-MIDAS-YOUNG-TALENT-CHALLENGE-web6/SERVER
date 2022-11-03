@@ -13,8 +13,8 @@ class ModifyApplicationService(
 ) {
 
     @Transactional
-    fun execute(request: ModifyApplicationRequest) {
-        val user = userFacade.getCurrentUser()
+    fun execute(userId: Int, request: ModifyApplicationRequest) {
+        val user = userFacade.getUserById(userId)
 
         if (!user.userApplication.equals(Role.ADMIN)) {
             throw UserNotAdminException.EXCEPTION

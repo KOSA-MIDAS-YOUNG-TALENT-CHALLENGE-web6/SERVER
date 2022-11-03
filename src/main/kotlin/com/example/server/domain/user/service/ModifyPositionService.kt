@@ -13,8 +13,8 @@ class ModifyPositionService(
 ) {
 
     @Transactional
-    fun execute(request: ModifyPositionRequest) {
-        val user = userFacade.getCurrentUser()
+    fun execute(userId: Int, request: ModifyPositionRequest) {
+        val user = userFacade.getUserById(userId)
 
         if (!user.userPosition.equals(Role.ADMIN)) {
             throw UserNotAdminException.EXCEPTION

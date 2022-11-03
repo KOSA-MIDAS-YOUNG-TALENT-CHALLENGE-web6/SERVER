@@ -71,16 +71,16 @@ class UserController(
 
     @Operation(summary = "소속 수정하기")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/application")
-    fun modifyApplication(@Valid @RequestBody request: ModifyApplicationRequest) {
-        modifyApplicationService.execute(request);
+    @PatchMapping("/application/{user-id}")
+    fun modifyApplication(@PathVariable("user-id") userId: Int, @Valid @RequestBody request: ModifyApplicationRequest) {
+        modifyApplicationService.execute(userId, request);
     }
 
     @Operation(summary = "직급 수정하기")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/position")
-    fun modifyPosition(@Valid @RequestBody request: ModifyPositionRequest) {
-        modifyPositionService.execute(request);
+    fun modifyPosition(@PathVariable("user-id") userId: Int, @Valid @RequestBody request: ModifyPositionRequest) {
+        modifyPositionService.execute(userId, request);
     }
 
     @Operation(summary = "오늘 총 근로 시간 조회")
