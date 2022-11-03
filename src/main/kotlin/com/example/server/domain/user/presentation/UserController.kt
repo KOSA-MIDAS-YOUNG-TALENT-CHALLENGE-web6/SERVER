@@ -48,7 +48,7 @@ class UserController(
     private val loginService: LoginService,
     private val modifyApplicationService: ModifyApplicationService,
     private val modifyPositionService: ModifyPositionService,
-    private val modifyNameService: ModifyNameService
+    private val modifyNameService: ModifyNameService,
     private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService,
     private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService,
     private val queryUserOfficeGoingService: QueryUserOfficeGoingService,
