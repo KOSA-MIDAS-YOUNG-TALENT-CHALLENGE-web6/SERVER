@@ -10,7 +10,7 @@ import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 @Entity
-@Table(name = "tbl_user")
+@Table(name = "tbl_feed")
 class Feed(
 
     @field:NotNull
