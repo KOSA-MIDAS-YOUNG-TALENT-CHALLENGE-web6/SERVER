@@ -16,7 +16,7 @@ class ModifyApplicationService(
     fun execute(request: ModifyApplicationRequest) {
         val user = userFacade.getCurrentUser()
 
-        if (!user.application.equals(Role.ADMIN)) {
+        if (!user.userApplication.equals(Role.ADMIN)) {
             throw UserNotAdminException.EXCEPTION
         }
 

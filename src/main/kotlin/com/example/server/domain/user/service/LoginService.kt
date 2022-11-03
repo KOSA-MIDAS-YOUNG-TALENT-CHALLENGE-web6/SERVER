@@ -24,7 +24,7 @@ class LoginService(
             throw PasswordMissMatchedException.EXCEPTION
         }
 
-        val token = jwtTokenProvider.getToken(request.email, user.role)
+        val token = jwtTokenProvider.getToken(request.email, user.userRole)
 
         return TokenResponse(token.accessToken)
     }
