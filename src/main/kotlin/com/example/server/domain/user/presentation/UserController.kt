@@ -8,8 +8,6 @@ import com.example.server.domain.user.presentation.dto.request.VerifyUserRequest
 import com.example.server.domain.user.service.LoginService
 import com.example.server.domain.user.service.ModifyApplicationService
 import com.example.server.domain.user.service.ModifyPositionService
-import com.example.server.domain.user.service.ModifyTodayOfficeGoingTimeService
-import com.example.server.domain.user.service.ModifyTodayQuittingTimeService
 import com.example.server.domain.user.service.QueryTodayWorkingTimeService
 import com.example.server.domain.user.service.SignupService
 import com.example.server.domain.user.service.VerifyUserService
@@ -35,8 +33,6 @@ class UserController(
     private val modifyApplicationService: ModifyApplicationService,
     private val modifyPositionService: ModifyPositionService,
     private val verifyUserService: VerifyUserService,
-    private val modifyTodayOfficeGoingTimeService: ModifyTodayOfficeGoingTimeService,
-    private val modifyTodayQuittingTimeService: ModifyTodayQuittingTimeService,
     private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService
 ) {
 
@@ -72,20 +68,6 @@ class UserController(
     @PatchMapping("/verify")
     fun verifyUser(@Valid @RequestBody request: VerifyUserRequest) {
         verifyUserService.execute(request);
-    }
-
-    @Operation(summary = "출근 시간 등록")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/officegoing")
-    fun modifyTodayOfficeGoingTime() {
-        modifyTodayOfficeGoingTimeService.execute();
-    }
-
-    @Operation(summary = "퇴근 시간 등록")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/quittingtime")
-    fun modifyTodayQuittingTime() {
-        modifyTodayQuittingTimeService.execute();
     }
 
     @Operation(summary = "오늘 총 근로 시간 조회")

@@ -19,4 +19,7 @@ class UserFacade(
     fun getUserByEmail(email: String): User {
         return userRepository.findUserByEmail(email) ?: throw UserNotFoundException.EXCEPTION
     }
-}
+
+    fun getUserById(userId: Int): User {
+        return userRepository.findUserById(userId) ?: throw UserNotFoundException.EXCEPTION
+    }}

@@ -4,6 +4,6 @@ import java.time.LocalDateTime
 
 data class TodayWorkingTimeResponse(
     val userId: Int,
-    val todayOfficeGoingTime: LocalDateTime,
-    val todayQuittingTime: LocalDateTime
+    val todayOfficeGoingTime: String,
+    val todayQuittingTime: String
 )
