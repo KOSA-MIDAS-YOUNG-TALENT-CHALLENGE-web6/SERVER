@@ -19,7 +19,7 @@ class Feed(
     isDone: Boolean,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, columnDefinition = "BINARY(16)")
+    @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
     val isAdmin: Boolean

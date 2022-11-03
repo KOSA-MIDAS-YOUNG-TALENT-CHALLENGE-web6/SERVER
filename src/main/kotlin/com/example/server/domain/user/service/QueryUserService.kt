@@ -21,7 +21,7 @@ class QueryUserService(
             email = user.email,
             name = user.name,
             userApplication = user.userApplication,
-            userPosition = user.password,
+            userPosition = user.userPosition,
             employeeId = user.employeeId,
             isOfficeGoing = user.isOfficeGoing
         )
