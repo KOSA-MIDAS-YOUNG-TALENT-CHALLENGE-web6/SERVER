@@ -15,7 +15,6 @@ import com.example.server.domain.user.service.QueryUserOfficeGoingService
 import com.example.server.domain.user.service.QueryUserQuittingService
 import com.example.server.domain.user.service.QueryWeekWorkingTimeService
 import com.example.server.domain.user.service.SignupService
-import com.example.server.domain.user.service.VerifyUserService
 import com.example.server.global.security.jwt.dto.TokenResponse
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -40,7 +39,6 @@ class UserController(
     private val loginService: LoginService,
     private val modifyApplicationService: ModifyApplicationService,
     private val modifyPositionService: ModifyPositionService,
-    private val verifyUserService: VerifyUserService,
     private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService,
     private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService,
     private val queryUserOfficeGoingService: QueryUserOfficeGoingService,
