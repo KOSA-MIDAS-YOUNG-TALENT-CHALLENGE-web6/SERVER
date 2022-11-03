@@ -120,13 +120,13 @@ class UserController(
     }
 
     @Operation(summary = "유저 예상 출근 시간 조회")
-    @GetMapping("/expectationoffice/{/user-id}")
+    @GetMapping("/expectationoffice/{user-id}")
     fun getExpectationOffice(@PathVariable("user-id") userId: Int): Int {
         return queryExpectationOfficeGoingTimeService.execute(userId);
     }
 
     @Operation(summary = "유저 예상 퇴근 시간 조회")
-    @GetMapping("/expectationquitting/{/user-id}")
+    @GetMapping("/expectationquitting/{user-id}")
     fun getExpectationQuitting(@PathVariable("user-id") userId: Int): Int {
         return queryExpectationQuittingTimeService.execute(userId);
     }
