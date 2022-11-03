@@ -27,7 +27,7 @@ class SignupService(
                 name = request.name,
                 userRole = Role.WORKER,
                 password = passwordEncoder.encode(request.password),
-                isVerify = false,
+                isVerifyUser = false,
                 isOfficeGoing = false,
                 isQuitting = false
             )

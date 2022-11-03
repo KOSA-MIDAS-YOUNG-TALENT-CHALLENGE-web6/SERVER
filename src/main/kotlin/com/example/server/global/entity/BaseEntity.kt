@@ -11,6 +11,4 @@ abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0
-
-    val createdTime: LocalDateTime = LocalDateTime.now()
 }

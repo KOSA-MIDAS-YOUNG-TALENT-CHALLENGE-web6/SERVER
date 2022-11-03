@@ -5,7 +5,6 @@ import com.example.server.global.entity.BaseEntity
 import com.example.server.infrastructure.aws.image.defaultImage.DefaultImage
 import org.hibernate.annotations.ColumnDefault
 import org.hibernate.validator.constraints.Length
-import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
@@ -40,34 +39,27 @@ class User(
 
     employeeId: String = DefaultImage.EMPLOYEE_ID_IMAGE,
 
-    isVerify: Boolean
+    isVerifyUser: Boolean
 
 ) : BaseEntity() {
 
-    @field:NotNull
     var userApplication = userApplication
         protected set
 
-    @field:NotNull
     var userPosition = userPosition
         protected set
 
-    @field:NotNull
     var isOfficeGoing = isOfficeGoing
         protected set
 
-    @field:NotNull
     var isQuitting = isQuitting
         protected set
 
-    @field:NotNull
     @ColumnDefault(DefaultImage.EMPLOYEE_ID_IMAGE)
     var employeeId = employeeId
         protected set
 
-    @field:NotNull
-    @ColumnDefault("'0'")
-    var isVerify = isVerify
+    var isVerifyUser = isVerifyUser
         protected set
 
     fun modifyApplication(application: String) {
@@ -79,7 +71,7 @@ class User(
     }
 
     fun verifyUser(isVerify: Boolean, employeeId: String) {
-        this.isVerify = isVerify
+        this.isVerifyUser = isVerify
         this.employeeId = employeeId
     }
 
