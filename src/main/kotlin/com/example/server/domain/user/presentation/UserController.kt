@@ -61,7 +61,7 @@ class UserController(
 
     @Operation(summary = "사원증 등록하기")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/position")
+    @PatchMapping("/verify")
     fun verifyUser(@Valid @RequestBody request: String) {
         verifyUserService.execute(request);
     }
