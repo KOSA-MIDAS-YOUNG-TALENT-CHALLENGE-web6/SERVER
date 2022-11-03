@@ -20,7 +20,7 @@ class QueryAdminFeedListService(
                 FeedElement(
                     id = it.id,
                     content = it.content,
-                    isDone = it.isDone
+                    isDone = it.isDoneFeed
                 )
             }
 

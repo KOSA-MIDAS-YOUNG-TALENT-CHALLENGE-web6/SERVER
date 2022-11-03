@@ -16,23 +16,23 @@ class Feed(
     @field:NotNull
     val content: String,
 
-    isDone: Boolean,
+    isDoneFeed: Boolean,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
-    val isAdmin: Boolean
+    val isAdminUser: Boolean
 
 ) : BaseEntity() {
-    var isDone = isDone
+    var isDoneFeed = isDoneFeed
         protected set
 
-    fun modifyIsDone(isDone: Boolean) {
-        this.isDone = isDone
+    fun modifyIsDone(isDoneFeed: Boolean) {
+        this.isDoneFeed = isDoneFeed
     }
 
     fun getIsAdmin(): Boolean {
-        return this.isAdmin
+        return this.isAdminUser
     }
 }

@@ -13,7 +13,7 @@ class ModifyDoneService(
     fun execute(feedId: Int) {
         val feed = feedFacade.getFeedById(feedId)
 
-        if (feed.isDone) {
+        if (feed.isDoneFeed) {
             feed.modifyIsDone(false)
         } else {
             feed.modifyIsDone(true)

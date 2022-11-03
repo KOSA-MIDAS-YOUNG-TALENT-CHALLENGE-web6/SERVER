@@ -26,9 +26,9 @@ class CreateFeedService(
 
         val feed = Feed(
             content = request.content,
-            isDone = false,
+            isDoneFeed= false,
             user = user,
-            isAdmin = admin
+            isAdminUser = admin
         )
 
         feedRepository.save(feed)
