@@ -18,8 +18,7 @@ class User(
     @field:NotNull
     val email: String,
 
-    @field:NotNull
-    val name: String,
+    name: String,
 
     @field:NotNull
     @Length(min = 8, max = 16)
@@ -31,7 +30,7 @@ class User(
 
     userApplication: String = "",
 
-    userPosition: String = "",
+    userPosition: String,
 
     isOfficeGoing: Boolean,
 
@@ -47,6 +46,9 @@ class User(
         protected set
 
     var userPosition = userPosition
+        protected set
+
+    var name = name
         protected set
 
     var isOfficeGoing = isOfficeGoing
@@ -68,6 +70,10 @@ class User(
 
     fun modifyPosition(position: String) {
         this.userApplication = position
+    }
+
+    fun modifyName(name: String) {
+        this.name = name
     }
 
     fun verifyUser(isVerify: Boolean, employeeId: String) {

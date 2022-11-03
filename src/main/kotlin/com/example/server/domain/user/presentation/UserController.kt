@@ -4,6 +4,7 @@ import com.example.server.domain.user.presentation.dto.request.LoginRequest
 import com.example.server.domain.user.presentation.dto.request.ModifyApplicationRequest
 import com.example.server.domain.user.presentation.dto.request.ModifyPositionRequest
 import com.example.server.domain.user.presentation.dto.request.SignupRequest
+import com.example.server.domain.user.presentation.dto.response.ModifyNameRequest
 import com.example.server.domain.user.presentation.dto.response.TodayWorkingTimeResponse
 import com.example.server.domain.user.presentation.dto.response.UserElement
 import com.example.server.domain.user.presentation.dto.response.UserListResponse
@@ -11,6 +12,7 @@ import com.example.server.domain.user.presentation.dto.response.UserResponse
 import com.example.server.domain.user.presentation.dto.response.WeekWorkingTimeListResponse
 import com.example.server.domain.user.service.LoginService
 import com.example.server.domain.user.service.ModifyApplicationService
+import com.example.server.domain.user.service.ModifyNameService
 import com.example.server.domain.user.service.ModifyPositionService
 import com.example.server.domain.user.service.QueryExpectationOfficeGoingTimeService
 import com.example.server.domain.user.service.QueryExpectationQuittingTimeService
@@ -46,6 +48,7 @@ class UserController(
     private val loginService: LoginService,
     private val modifyApplicationService: ModifyApplicationService,
     private val modifyPositionService: ModifyPositionService,
+    private val modifyNameService: ModifyNameService
     private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService,
     private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService,
     private val queryUserOfficeGoingService: QueryUserOfficeGoingService,
@@ -78,9 +81,16 @@ class UserController(
 
     @Operation(summary = "직급 수정하기")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/position")
+    @PatchMapping("/position/{user-id}")
     fun modifyPosition(@PathVariable("user-id") userId: Int, @Valid @RequestBody request: ModifyPositionRequest) {
         modifyPositionService.execute(userId, request);
+    }
+
+    @Operation(summary = "이름 수정하기")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/name/{user-id}")
+    fun modifyName(@PathVariable("user-id") userId: Int, @Valid @RequestBody request: ModifyNameRequest) {
+        modifyNameService.execute(userId, request);
     }
 
     @Operation(summary = "오늘 총 근로 시간 조회")
