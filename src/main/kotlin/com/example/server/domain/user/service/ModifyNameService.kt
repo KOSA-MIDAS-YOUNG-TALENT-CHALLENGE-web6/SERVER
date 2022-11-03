@@ -20,6 +20,6 @@ class ModifyNameService(
             throw UserNotAdminException.EXCEPTION
         }
 
-        user.modifyApplication(request.name)
+        user.modifyName(request.name)
     }
 }
