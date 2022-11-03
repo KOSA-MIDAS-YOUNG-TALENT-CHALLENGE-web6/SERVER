@@ -5,10 +5,15 @@ import com.example.server.domain.user.presentation.dto.request.ModifyApplication
 import com.example.server.domain.user.presentation.dto.request.ModifyPositionRequest
 import com.example.server.domain.user.presentation.dto.request.SignupRequest
 import com.example.server.domain.user.presentation.dto.request.VerifyUserRequest
+import com.example.server.domain.user.presentation.dto.response.TodayWorkingTimeResponse
+import com.example.server.domain.user.presentation.dto.response.UserListResponse
+import com.example.server.domain.user.presentation.dto.response.WeekWorkingTimeListResponse
 import com.example.server.domain.user.service.LoginService
 import com.example.server.domain.user.service.ModifyApplicationService
 import com.example.server.domain.user.service.ModifyPositionService
 import com.example.server.domain.user.service.QueryTodayWorkingTimeService
+import com.example.server.domain.user.service.QueryUserOfficeGoingService
+import com.example.server.domain.user.service.QueryUserQuittingService
 import com.example.server.domain.user.service.QueryWeekWorkingTimeService
 import com.example.server.domain.user.service.SignupService
 import com.example.server.domain.user.service.VerifyUserService
@@ -38,7 +43,9 @@ class UserController(
     private val modifyPositionService: ModifyPositionService,
     private val verifyUserService: VerifyUserService,
     private val queryTodayWorkingTimeService: QueryTodayWorkingTimeService,
-    private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService
+    private val queryWeekWorkingTimeService: QueryWeekWorkingTimeService,
+    private val queryUserOfficeGoingService: QueryUserOfficeGoingService,
+    private val queryUserQuittingService: QueryUserQuittingService
 ) {
 
     @Operation(summary = "회원가입")
@@ -77,13 +84,26 @@ class UserController(
 
     @Operation(summary = "오늘 총 근로 시간 조회")
     @GetMapping("/today")
-    fun getTodayWorkingTime() {
-        queryTodayWorkingTimeService.execute();
+    fun getTodayWorkingTime(): TodayWorkingTimeResponse {
+        return queryTodayWorkingTimeService.execute();
     }
 
     @Operation(summary = "한 주 총 근로 시간 조회")
     @GetMapping("/week")
-    fun getWeekWorkingTime(@RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) date: LocalDateTime) {
-        queryWeekWorkingTimeService.execute(date);
+    fun getWeekWorkingTime(@RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) date: LocalDateTime): WeekWorkingTimeListResponse {
+        return queryWeekWorkingTimeService.execute(date);
     }
+
+    @Operation(summary = "출근한 유저 조회")
+    @GetMapping("/officegoing")
+    fun getOfficeGoing(): UserListResponse {
+        return queryUserOfficeGoingService.execute();
+    }
+
+    @Operation(summary = "퇴근한 유저 조회")
+    @GetMapping("/quitting")
+    fun getQuitting(): UserListResponse {
+        return queryUserQuittingService.execute();
+    }
+
 }
