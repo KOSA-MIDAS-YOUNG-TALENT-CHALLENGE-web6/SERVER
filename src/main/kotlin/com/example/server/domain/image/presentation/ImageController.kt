@@ -1,4 +1,4 @@
-package com.example.server.domain.image
+package com.example.server.domain.image.presentation
 
 import com.example.server.domain.image.presentation.dto.ImageListResponse
 import com.example.server.domain.image.service.ImageService
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
 
 @Tag(name = "이미지", description = "이미지 관련 API입니다.")
-@RequestMapping("/image")
 @RestController
 class ImageController(
     private val imageService: ImageService
