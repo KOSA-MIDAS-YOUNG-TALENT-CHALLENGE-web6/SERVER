@@ -28,6 +28,7 @@ import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -119,14 +120,14 @@ class UserController(
     }
 
     @Operation(summary = "유저 예상 출근 시간 조회")
-    @GetMapping("/expectationoffice")
-    fun getExpectationOffice(): Int {
-        return queryExpectationOfficeGoingTimeService.execute();
+    @GetMapping("/expectationoffice/{/user-id}")
+    fun getExpectationOffice(@PathVariable("user-id") userId: Int): Int {
+        return queryExpectationOfficeGoingTimeService.execute(userId);
     }
 
     @Operation(summary = "유저 예상 퇴근 시간 조회")
-    @GetMapping("/expectationquitting")
-    fun getExpectationQuitting(): Int {
-        return queryExpectationQuittingTimeService.execute();
+    @GetMapping("/expectationquitting/{/user-id}")
+    fun getExpectationQuitting(@PathVariable("user-id") userId: Int): Int {
+        return queryExpectationQuittingTimeService.execute(userId);
     }
 }

@@ -12,10 +12,10 @@ class QueryExpectationQuittingTimeService(
 ) {
 
     @Transactional(readOnly = true)
-    fun execute(): Int {
+    fun execute(userId: Int): Int {
         var average = 0
         var cnt = 0
-        val user = userFacade.getCurrentUser()
+        val user = userFacade.getUserById(userId)
         quittingRepository.findAllByUser(user)
             ?.map {
                 average += it.time.hour
